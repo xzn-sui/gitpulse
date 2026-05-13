@@ -10,6 +10,6 @@
 
 ## Contact Email: ewen@terpmail.umd.edu
 
-## Deployed App Link: [https://gitpulse-f6aa.onrender.com](https://gitpulse-f6aa.onrender.com)
+## Deployed App Link: https://gitpulse-f6aa.onrender.com
 
 ## AI Use: Claude Code
