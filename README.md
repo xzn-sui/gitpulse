@@ -1,15 +1,15 @@
-## Submitted by: Eric (ewen)
+## Submitted by: Eric Wen (ewen)
 
-## Group Members: Eric (ewen)
+## Group Members: Eric Wen (ewen)
 
-## App Description: A GitHub repository explorer that lets users browse popular repos by language and bookmark their favorites with personal notes.
+## App Description: A GitHub repository explorer that lets users browse popular repos and bookmark their favorites with personal notes.
 
 ## YouTube Video Link: [TO BE ADDED]
 
 ## APIs: GitHub REST API (https://api.github.com)
 
-## Contact Email: eric661188@gmail.com
+## Contact Email: ewen@terpmail.umd.edu
 
-## Deployed App Link: [TO BE ADDED]
+## Deployed App Link: [https://gitpulse-f6aa.onrender.com](https://gitpulse-f6aa.onrender.com)
 
 ## AI Use: Claude Code
