@@ -4,7 +4,7 @@
 
 ## App Description: A GitHub repository explorer that lets users browse popular repos and bookmark their favorites with personal notes.
 
-## YouTube Video Link: [TO BE ADDED]
+## YouTube Video Link: https://www.youtube.com/watch?v=bhe_8hMP4iY
 
 ## APIs: GitHub REST API (https://api.github.com)
 
