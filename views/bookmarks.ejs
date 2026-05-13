@@ -1,0 +1,51 @@
+<%- include('partials/header') %>
+
+<div class="page-header">
+  <h1 class="page-title">My Bookmarks</h1>
+  <a href="/repos" class="btn btn-primary">+ Explore More</a>
+</div>
+
+<% if (typeof error !== 'undefined') { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<% if (bookmarks.length === 0) { %>
+  <div class="empty-state">
+    <p>No bookmarks yet.</p>
+    <a href="/repos" class="btn btn-primary">Start Exploring</a>
+  </div>
+<% } else { %>
+  <div class="bookmark-grid">
+    <% bookmarks.forEach(bm => { %>
+    <div class="bookmark-card">
+      <div class="bookmark-card__header">
+        <a href="<%= bm.repoUrl %>" target="_blank" class="repo-name"><%= bm.repoName %></a>
+        <span class="repo-author">by <%= bm.author %></span>
+      </div>
+      <p class="repo-description"><%= bm.description || 'No description.' %></p>
+
+      <% if (bm.note) { %>
+        <div class="bookmark-note">
+          <span class="note-label">Note:</span> <%= bm.note %>
+        </div>
+      <% } %>
+
+      <div class="repo-meta">
+        <span class="badge badge--stars">&#x2B50; <%= (bm.stars || 0).toLocaleString() %></span>
+        <% if (bm.language) { %>
+          <span class="badge badge--lang"><%= bm.language %></span>
+        <% } %>
+        <span class="badge badge--date">Saved <%= new Date(bm.savedAt).toLocaleDateString() %></span>
+      </div>
+
+      <form action="/bookmarks/<%= bm._id %>/delete" method="POST" class="delete-form">
+        <button type="submit" class="btn btn-delete" onclick="return confirm('Remove this bookmark?')">
+          &#x1F5D1; Delete
+        </button>
+      </form>
+    </div>
+    <% }); %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

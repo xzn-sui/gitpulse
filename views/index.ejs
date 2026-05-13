@@ -1,0 +1,78 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <h1 class="hero-title">Discover GitHub Repositories</h1>
+  <p class="hero-sub">Browse the most popular open-source projects and save your favorites.</p>
+
+  <form action="/repos" method="GET" class="filter-form">
+    <div class="filter-grid">
+      <div class="filter-group">
+        <label class="filter-label">Language</label>
+        <select name="language" class="filter-select">
+          <option value="All">All Languages</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="TypeScript">TypeScript</option>
+          <option value="Go">Go</option>
+          <option value="Rust">Rust</option>
+          <option value="C++">C++</option>
+          <option value="Java">Java</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Topic</label>
+        <select name="topic" class="filter-select">
+          <option value="All">All Topics</option>
+          <option value="machine-learning">Machine Learning</option>
+          <option value="deep-learning">Deep Learning</option>
+          <option value="data-science">Data Science</option>
+          <option value="web-development">Web Development</option>
+          <option value="devops">DevOps</option>
+          <option value="security">Security</option>
+          <option value="mobile">Mobile</option>
+          <option value="game-development">Game Development</option>
+          <option value="interview">Interview Prep</option>
+          <option value="cli">CLI Tools</option>
+          <option value="algorithm">Algorithms</option>
+          <option value="job-search">Job Search</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Timeframe</label>
+        <select name="timeframe" class="filter-select">
+          <option value="all">All Time</option>
+          <option value="year">Past Year</option>
+          <option value="6months">Past 6 Months</option>
+          <option value="3months">Past 3 Months</option>
+          <option value="month">Past Month</option>
+          <option value="week">Past Week</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-explore">Explore Repos</button>
+  </form>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <div class="feature-icon">&#x1F50D;</div>
+    <h3>Discover</h3>
+    <p>Filter by language, topic, and timeframe to find exactly what you're looking for.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">&#x2B50;</div>
+    <h3>Bookmark</h3>
+    <p>Save your favorite repos with personal notes for later reference.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">&#x1F4CA;</div>
+    <h3>Track</h3>
+    <p>See stars, forks, and language details at a glance.</p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,98 @@
+<%- include('partials/header') %>
+
+<div class="page-header">
+  <h1 class="page-title">Explore Repositories</h1>
+</div>
+
+<form action="/repos" method="GET" class="filter-bar">
+  <div class="filter-bar__group">
+    <label class="filter-label">Language</label>
+    <select name="language" class="filter-select">
+      <option value="All"        <%= language === 'All'        ? 'selected' : '' %>>All Languages</option>
+      <option value="JavaScript" <%= language === 'JavaScript' ? 'selected' : '' %>>JavaScript</option>
+      <option value="Python"     <%= language === 'Python'     ? 'selected' : '' %>>Python</option>
+      <option value="TypeScript" <%= language === 'TypeScript' ? 'selected' : '' %>>TypeScript</option>
+      <option value="Go"         <%= language === 'Go'         ? 'selected' : '' %>>Go</option>
+      <option value="Rust"       <%= language === 'Rust'       ? 'selected' : '' %>>Rust</option>
+      <option value="C++"        <%= language === 'C++'        ? 'selected' : '' %>>C++</option>
+      <option value="Java"       <%= language === 'Java'       ? 'selected' : '' %>>Java</option>
+      <option value="C"          <%= language === 'C'          ? 'selected' : '' %>>C</option>
+    </select>
+  </div>
+
+  <div class="filter-bar__group">
+    <label class="filter-label">Topic</label>
+    <select name="topic" class="filter-select">
+      <option value="All"              <%= topic === 'All'              ? 'selected' : '' %>>All Topics</option>
+      <option value="machine-learning" <%= topic === 'machine-learning' ? 'selected' : '' %>>Machine Learning</option>
+      <option value="deep-learning"    <%= topic === 'deep-learning'    ? 'selected' : '' %>>Deep Learning</option>
+      <option value="data-science"     <%= topic === 'data-science'     ? 'selected' : '' %>>Data Science</option>
+      <option value="web-development"  <%= topic === 'web-development'  ? 'selected' : '' %>>Web Development</option>
+      <option value="devops"           <%= topic === 'devops'           ? 'selected' : '' %>>DevOps</option>
+      <option value="security"         <%= topic === 'security'         ? 'selected' : '' %>>Security</option>
+      <option value="mobile"           <%= topic === 'mobile'           ? 'selected' : '' %>>Mobile</option>
+      <option value="game-development" <%= topic === 'game-development' ? 'selected' : '' %>>Game Development</option>
+      <option value="interview"        <%= topic === 'interview'        ? 'selected' : '' %>>Interview Prep</option>
+      <option value="cli"              <%= topic === 'cli'              ? 'selected' : '' %>>CLI Tools</option>
+      <option value="algorithm"        <%= topic === 'algorithm'        ? 'selected' : '' %>>Algorithms</option>
+      <option value="job-search"       <%= topic === 'job-search'       ? 'selected' : '' %>>Job Search</option>
+    </select>
+  </div>
+
+  <div class="filter-bar__group">
+    <label class="filter-label">Timeframe</label>
+    <select name="timeframe" class="filter-select">
+      <option value="all"      <%= timeframe === 'all'      ? 'selected' : '' %>>All Time</option>
+      <option value="year"     <%= timeframe === 'year'     ? 'selected' : '' %>>Past Year</option>
+      <option value="6months"  <%= timeframe === '6months'  ? 'selected' : '' %>>Past 6 Months</option>
+      <option value="3months"  <%= timeframe === '3months'  ? 'selected' : '' %>>Past 3 Months</option>
+      <option value="month"    <%= timeframe === 'month'    ? 'selected' : '' %>>Past Month</option>
+      <option value="week"     <%= timeframe === 'week'     ? 'selected' : '' %>>Past Week</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary filter-bar__btn">Filter</button>
+</form>
+
+<% if (typeof error !== 'undefined') { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<% if (repos.length === 0 && typeof error === 'undefined') { %>
+  <div class="empty-state">
+    <p>No repositories found for this combination.</p>
+    <p style="font-size:0.85rem;">Try widening the timeframe or removing a filter.</p>
+  </div>
+<% } %>
+
+<div class="repo-grid">
+  <% repos.forEach(repo => { %>
+  <div class="repo-card">
+    <div class="repo-card__header">
+      <a href="<%= repo.repoUrl %>" target="_blank" class="repo-name"><%= repo.repoName %></a>
+      <span class="repo-author">by <%= repo.author %></span>
+    </div>
+    <p class="repo-description"><%= repo.description || 'No description provided.' %></p>
+    <div class="repo-meta">
+      <span class="badge badge--stars">&#x2B50; <%= repo.stars.toLocaleString() %></span>
+      <span class="badge badge--forks">&#x1F374; <%= repo.forks.toLocaleString() %></span>
+      <% if (repo.language !== 'N/A') { %>
+        <span class="badge badge--lang"><%= repo.language %></span>
+      <% } %>
+    </div>
+
+    <form action="/bookmarks" method="POST" class="bookmark-form">
+      <input type="hidden" name="repoName"    value="<%= repo.repoName %>" />
+      <input type="hidden" name="repoUrl"     value="<%= repo.repoUrl %>" />
+      <input type="hidden" name="author"      value="<%= repo.author %>" />
+      <input type="hidden" name="description" value="<%= repo.description %>" />
+      <input type="hidden" name="stars"       value="<%= repo.stars %>" />
+      <input type="hidden" name="language"    value="<%= repo.language %>" />
+      <input type="text" name="note" placeholder="Add a personal note (optional)..." class="note-input" />
+      <button type="submit" class="btn btn-bookmark">&#x1F516; Bookmark</button>
+    </form>
+  </div>
+  <% }); %>
+</div>
+
+<%- include('partials/footer') %>
